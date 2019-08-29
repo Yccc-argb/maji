@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp">
+
+
+    <TextView
+        android:id="@+id/tvShopLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_shop_location"
+        android:gravity="center"
+        android:padding="2dp"
+        android:text="杭州西湖区门店"
+        android:textColor="@color/color_white"
+        android:textSize="10sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="13dp"
+        android:layout_toRightOf="@+id/tvShopLocation"
+        android:text="门店编号:03"
+        android:textColor="@color/color_333"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/tvMemberName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvShopLocation"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="6dp"
+        android:text="张军"
+        android:textColor="@color/color_333"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvMemberName"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:text="15157172719"
+        android:textColor="@color/color_666"
+        android:textSize="14sp" />
+
+    <RelativeLayout
+        android:id="@+id/rlCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp">
+
+        <ImageView
+            android:id="@+id/ivCall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_call" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ivCall"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/color_999"
+            android:text="立即拨号" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/color_999"/>
+
+</RelativeLayout>

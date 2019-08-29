@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="color_white">#ffffff</color>
+    <color name="color_C6C6C6">#c6c6c6c6</color>
+    <color name="color_CECECE">#cecece</color>
+    <color name="color_999">#999999</color>
+    <color name="color_666">#666666</color>
+    <color name="color_333">#333333</color>
+    <color name="color_eee">#eeeeee</color>
+    <color name="icon_select_color">#5837b6</color>
+    <color name="color_app_theme">#5837B6</color>
+    <color name="bg_black">#000000</color>
+</resources>

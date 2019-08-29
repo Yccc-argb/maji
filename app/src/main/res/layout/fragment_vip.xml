@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/title" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/color_999"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <TextView
+            android:textColor="@color/color_333"
+            android:id="@+id/tv_phone"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="手机号"/>
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_marginLeft="42dp"
+            android:layout_marginRight="20dp"
+            android:background="@null"
+            android:layout_centerVertical="true"
+            android:textCursorDrawable="@drawable/bg_edittext_cursor"
+            android:layout_toRightOf="@+id/tv_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_333"
+            android:textSize="16sp"
+            android:maxLength="11"
+            android:hint="请输入"
+            android:text=""/>
+        <View
+            android:layout_marginLeft="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/color_eee"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <TextView
+            android:id="@+id/tv_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="会员卡"
+            android:textColor="@color/color_333"
+            android:textSize="16sp" />
+        <EditText
+                android:id="@+id/et_vip"
+            android:layout_marginLeft="42dp"
+            android:layout_marginRight="20dp"
+            android:background="@null"
+            android:layout_centerVertical="true"
+            android:textCursorDrawable="@drawable/bg_edittext_cursor"
+            android:layout_toRightOf="@+id/tv_code"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_333"
+            android:textSize="16sp"
+            android:maxLength="11"
+            android:hint="请输入"/>
+        <TextView
+            android:id="@+id/tv_sao"
+            android:textColor="@color/color_white"
+            android:gravity="center"
+            android:layout_marginRight="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_sao_white"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
+        <View
+            android:layout_marginLeft="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/color_eee"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="60dp"
+        android:id="@+id/rl_btn_sure"
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_btn"
+        android:layout_gravity="center_horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_white"
+            android:text="去充点"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+</LinearLayout>

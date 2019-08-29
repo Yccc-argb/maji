@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/title" />
+
+
+        <RelativeLayout
+            android:id="@+id/rl_vip_name"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="姓名    "
+                android:textColor="@color/color_333"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="42dp"
+                android:layout_marginRight="20dp"
+                android:layout_toRightOf="@+id/tv_name"
+                android:background="@null"
+                android:hint="请输入"
+                android:maxLength="11"
+                android:text=""
+                android:textColor="@color/color_333"
+                android:textCursorDrawable="@drawable/bg_edittext_cursor"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="20dp"
+                android:background="@color/color_eee" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_vip_phone"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <TextView
+                android:id="@+id/tv_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="手机号"
+                android:textColor="@color/color_333"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/et_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="42dp"
+                android:layout_marginRight="20dp"
+                android:layout_toRightOf="@+id/tv_phone"
+                android:background="@null"
+                android:hint="请输入"
+                android:maxLength="11"
+                android:text=""
+                android:textColor="@color/color_333"
+                android:textCursorDrawable="@drawable/bg_edittext_cursor"
+                android:textSize="16sp" />
+            <!--<View-->
+            <!--android:layout_marginLeft="20dp"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0.5dp"-->
+            <!--android:background="@color/color_eee"/>-->
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/et_remarks"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/bg_options"
+            android:gravity="top"
+            android:maxLength="200"
+            android:text=""
+            android:hint="请输入备注信息"
+            android:padding="10dp" />
+
+        <RelativeLayout
+            android:id="@+id/rl_btn_sure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/selector_btn"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="确定"
+                android:textColor="@color/color_white"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</ScrollView>

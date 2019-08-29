@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_white">
+
+    <TextView
+        android:id="@+id/tv_charge_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="充值 100"
+        android:textSize="14sp"
+        android:textColor="@color/color_333"/>
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_phone_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_charge_money"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="16dp"
+        android:textSize="12sp"
+        android:textColor="@color/color_666"
+        android:text="手机号: 118948984918984981" />
+    <TextView
+        android:id="@+id/tv_vip_card_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_phone_number"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="16dp"
+        android:textSize="12sp"
+        android:textColor="@color/color_666"
+        android:text="会员卡号: 118948984918984981" />
+
+    <TextView
+        android:id="@+id/tv_charge_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_vip_card_number"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="16dp"
+        android:textSize="12sp"
+        android:textColor="@color/color_666"
+        android:text="充值时间: 2019-04-07 12:33:33" />
+
+
+    <TextView
+        android:id="@+id/tv_add_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="20dp"
+        android:text="+ 100"
+        android:textColor="#FFBA33"
+        android:textSize="14sp" />
+    <View
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/tv_charge_time"
+        android:layout_marginLeft="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/color_eee"/>
+</RelativeLayout>

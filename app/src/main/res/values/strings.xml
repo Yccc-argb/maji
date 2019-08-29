@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">麻吉老板</string>
+    <string name="user_agreement">登录即表示您已同意<font color="#5837B6">&lt;&lt;用户协议&gt;&gt;</font></string>
+    <string name="total_authorize"><big><big>231台</big></big>\n授权总设备</string>
+    <string name="have_authorize"><big><big>21台</big></big>\n已授权</string>
+    <string name="have_no_authorize"><big><big>2台</big></big>\n未授权</string>
+
+    <string name="total_device_count"><big><big>231台</big></big>\n授权总设备</string>
+    <string name="total_online_count"><big><big>21台</big></big>\n在线</string>
+    <string name="total_offline_count"><big><big>2台</big></big>\n离线</string>
+    <string name="yesterday_income"><big><big>260.00</big></big>\n昨日收益(元)</string>
+    <string name="today_income"><big><big>240.00</big></big>\n今日收益(元)</string>
+
+    <string name="total_benifit"><big><big>3000</big></big>万元\n门店总收益</string>
+    <string name="account_is_empty">账号不能为空</string>
+    <string name="phone_is_empty">手机号不能为空</string>
+    <string name="condition_is_empty">查询条件不能为空</string>
+    <string name="name_is_empty">姓名不能为空</string>
+    <string name="vertify_code_is_empty">验证码不能为空</string>
+    <string name="code_is_empty">密码不能为空</string>
+    <string name="forget_password">忘记密码</string>
+    <string name="input_new_password">请输入新密码</string>
+    <string name="confirm_new_password">请确认新密码</string>
+    <string name="is_not_same">两次输入密码不一致</string>
+    <string name="vipnumeber_is_empty">会员卡号不能为空</string>
+    <string name="charge_is_empty">请选择充值机</string>
+    <string name="get_vip_number_fail">获取会员卡号失败</string>
+    <string name="charge_money_is_empty">请输入充值金额</string>
+    <string name="_234"><big><big>234</big></big> 人</string>
+
+</resources>

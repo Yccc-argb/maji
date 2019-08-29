@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120dp">
+
+
+    <ImageView
+        android:id="@+id/iv_device"
+        android:layout_width="100dp"
+        android:layout_height="90dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp" />
+    
+    <TextView
+        android:id="@+id/device_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iv_device"
+        android:text="西湖区门店"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp"
+        android:textColor="@color/color_333"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/shop_bianma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/device_name"
+        android:text="门店编号: 23"
+        android:layout_toRightOf="@+id/iv_device"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:textSize="14sp"
+        android:textColor="@color/color_666"/>
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="授权台数: 3台"
+        android:textSize="14sp"
+        android:layout_below="@+id/device_name"
+        android:layout_marginLeft="25dp"
+        android:layout_toRightOf="@id/shop_bianma"/>
+    <ImageView
+        android:id="@+id/iv_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:src="@drawable/ic_address"
+        android:layout_below="@+id/shop_bianma"
+        android:layout_marginTop="22dp"
+        android:layout_toRightOf="@+id/iv_device"
+        android:layout_marginLeft="16dp"
+        />
+    <TextView
+        android:layout_marginLeft="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iv_address"
+        android:layout_below="@+id/shop_bianma"
+        android:layout_marginTop="20dp"
+        android:textSize="14sp"
+        android:textColor="@color/color_666"
+        android:text="杭州西湖区"/>
+
+</RelativeLayout>

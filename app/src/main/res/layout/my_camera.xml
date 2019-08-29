@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:orientation="vertical">
+
+
+    <SurfaceView
+        android:id="@+id/preview_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+
+
+        <it.dongjun.mylibrary.view.ViewfinderView
+            android:id="@+id/viewfinder_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:inner_corner_color="@color/icon_select_color"
+            app:inner_corner_length="20dp"
+            app:inner_corner_width="2dp"
+            app:inner_height="260dp"
+            app:inner_margintop="150dp"
+            app:inner_scan_iscircle="false"
+            app:inner_scan_speed="25"
+            app:inner_width="260dp"
+            />
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/viewfinder_view"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="90dp"
+        android:text="请对准设备上的二维码"
+        android:textColor="#fff"
+        android:textSize="18sp"/>
+
+
+
+</FrameLayout>

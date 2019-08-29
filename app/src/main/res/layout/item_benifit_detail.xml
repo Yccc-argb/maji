@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="96dp">
+
+
+    <TextView
+        android:id="@+id/vipNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:text="会员卡:56452399778669"
+        android:textColor="@color/color_333"
+        android:textSize="12sp" />
+    <TextView
+        android:id="@+id/shoufeiType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/vipNum"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_shoufei_type"
+        android:gravity="center"
+        android:textColor="@color/color_white"
+        android:textSize="12sp"
+        android:text="计局收费"/>
+    <TextView
+        android:id="@+id/totalNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/shoufeiType"
+        android:layout_below="@+id/vipNum"
+        android:layout_marginLeft="10dp"
+        android:textSize="14sp"
+        android:text="共计: 20局"
+        android:textColor="@color/color_333"
+        android:layout_marginTop="10dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_666"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="12dp"
+        android:textSize="10sp"
+        android:text="2018-09-30  12:33:30"
+        android:layout_below="@+id/totalNum"/>
+
+
+    <TextView
+        android:layout_centerVertical="true"
+        android:textSize="20sp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:textColor="#FFBA33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+53.00"/>
+
+    <View
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/color_C6C6C6"/>
+
+</RelativeLayout>

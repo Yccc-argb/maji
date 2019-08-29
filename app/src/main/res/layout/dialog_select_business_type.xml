@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:id="@+id/tv_bottom_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="请选择业务"
+            android:textColor="@color/bg_black"
+            android:textSize="18sp"/>
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="25dp"
+            android:src="@drawable/ic_cancel"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f0f0f0"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_charge"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <TextView
+            android:id="@+id/tv_charge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="充值"
+            android:layout_centerInParent="true"
+            android:textSize="18sp"/>
+
+        <View
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#f0f0f0"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_guashi"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <TextView
+            android:id="@+id/tv_guashi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="挂失"
+            android:layout_centerInParent="true"
+            android:textSize="18sp"/>
+
+        <View
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#f0f0f0"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_buka"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <TextView
+            android:id="@+id/tv_buka"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="补卡"
+            android:layout_centerInParent="true"
+            android:textSize="18sp"/>
+
+        <View
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#f0f0f0"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_tuika"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <TextView
+            android:id="@+id/tv_tuika"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="退卡"
+            android:layout_centerInParent="true"
+            android:textSize="18sp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

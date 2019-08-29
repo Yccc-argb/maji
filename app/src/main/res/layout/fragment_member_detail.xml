@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/title_bar"/>
+    <include layout="@layout/title"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:textColor="@color/color_333"
+            android:textSize="14sp"
+            android:text="姓名             "/>
+        <EditText
+            android:layout_toRightOf="@+id/tvName"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="40dp"
+            android:background="@null"
+            android:text="张军"
+            android:textSize="15sp"
+            android:textColor="@color/color_666"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_marginLeft="16dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/color_999"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+
+        <TextView
+            android:id="@+id/tvPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:textColor="@color/color_333"
+            android:textSize="14sp"
+            android:text="手机号        "/>
+        <EditText
+            android:layout_toRightOf="@+id/tvPhone"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="40dp"
+            android:background="@null"
+            android:text="15157172719"
+            android:textSize="15sp"
+            android:textColor="@color/color_666"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_marginLeft="16dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/color_999"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+
+        <TextView
+            android:id="@+id/tvBianhao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:textColor="@color/color_333"
+            android:textSize="14sp"
+            android:text="门店编号    "/>
+        <EditText
+            android:layout_toRightOf="@+id/tvBianhao"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="40dp"
+            android:background="@null"
+            android:text="23"
+            android:textSize="15sp"
+            android:textColor="@color/color_666"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_marginLeft="16dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/color_999"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+
+        <TextView
+            android:id="@+id/tvQuanxian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:textColor="@color/color_333"
+            android:textSize="14sp"
+            android:text="权限分配    "/>
+        <EditText
+            android:layout_toRightOf="@+id/tvQuanxian"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="40dp"
+            android:background="@null"
+            android:text="张军"
+            android:textSize="15sp"
+            android:textColor="@color/color_666"
+            android:layout_height="wrap_content" />
+
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f2f2f2"/>
+
+</LinearLayout>

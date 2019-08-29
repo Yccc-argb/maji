@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    android:orientation="vertical">
+
+    <include layout="@layout/title" />
+    <RelativeLayout
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="#5837B6">
+        <TextView
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="会员总数"
+            android:textColor="@color/color_white"
+            android:textSize="18sp"/>
+        <TextView
+            android:id="@+id/tv_vip_tall"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_white"
+            android:textSize="20sp"
+            android:text="0"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="当前会员"
+            android:layout_centerVertical="true"
+            android:textSize="16sp"
+            android:layout_marginStart="15dp"/>
+        <RelativeLayout
+            android:layout_alignParentEnd="true"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="15dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/bg_vip_info_search">
+            <EditText
+                android:id="@+id/et_phone_search"
+                android:hint="  请输入手机号/卡号"
+                android:textSize="12sp"
+                android:layout_width="140dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="8dp"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:textCursorDrawable="@drawable/bg_edittext_cursor"
+                />
+            <ImageView
+                android:id="@+id/iv_search"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_search"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+            android:layout_marginBottom="45dp"
+            android:id="@+id/bg_refreshlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rlv_vipinfo"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+        </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+        <RelativeLayout
+            android:id="@+id/rl_btn_sure"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_alignParentBottom="true"
+
+            android:background="@drawable/selector_btn">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_white"
+                android:text="扫码充点"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>
