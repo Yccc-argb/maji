@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:text="总运营指数(点)"
+            android:text="当月运营指数(点)"
             android:textColor="@color/color_white"
             android:textSize="20sp" />
 
