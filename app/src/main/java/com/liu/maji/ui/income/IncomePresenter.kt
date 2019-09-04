@@ -19,7 +19,8 @@ class IncomePresenter : BasePresenter<IncomeView>() {
             override fun onRealSuccess(t: IncomeResponse?) {
                 if (t != null) {
                     if (t.isSuccess){
-                        view?.getIncomeDataResult(t.data.totalSum,t.data.yesterdayTotalSum,t.data.totalSum)
+                        //今日收益,昨日收益,总收益
+                        view?.getIncomeDataResult(t.data.monthTotalSum,t.data.yesterdayTotalSum,t.data.totalSum)
                     }else {
                         ToastUtils.showToast(t.message)
                     }

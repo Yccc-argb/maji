@@ -9,4 +9,8 @@ object CommonUtils {
         val compile = Pattern.compile(regex, Pattern.CASE_INSENSITIVE)
         return compile.matcher(phone).matches()
     }
+
+    fun getVersionName() : String{
+        return UIUtil.geContext().packageManager.getPackageInfo(UIUtil.geContext().packageName,0).versionName
+    }
 }

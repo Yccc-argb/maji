@@ -61,7 +61,7 @@ public class IncomeResponse extends CommonResponse {
         private int ytdOnlineProfit;
         private int ytdUnderLineProfit;
         private double yesterdayTotalSum;
-        private int monthTotalSum;
+        private double monthTotalSum;
         private int monthOnlineTotalSum;
         private int monthUnderLineTotalSum;
         private double allTotalSum;
@@ -164,11 +164,11 @@ public class IncomeResponse extends CommonResponse {
             this.yesterdayTotalSum = yesterdayTotalSum;
         }
 
-        public int getMonthTotalSum() {
+        public double getMonthTotalSum() {
             return monthTotalSum;
         }
 
-        public void setMonthTotalSum(int monthTotalSum) {
+        public void setMonthTotalSum(double monthTotalSum) {
             this.monthTotalSum = monthTotalSum;
         }
 

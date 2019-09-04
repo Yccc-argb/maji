@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import cn.com.liu.maji.R
 import com.liu.maji.app.Constant
 import com.liu.maji.base.MySupportFragment
+import com.liu.maji.utils.CommonUtils
 import com.liu.maji.utils.Prefs
 import kotlinx.android.synthetic.main.fragment_set.*
 import kotlinx.android.synthetic.main.title.*
@@ -41,6 +42,7 @@ class SetFragment : MySupportFragment<SetView,SetPrenter>(), View.OnClickListene
         tv_add.visibility = View.INVISIBLE
         rl_exit.setOnClickListener(this)
         iv_back.setOnClickListener(this)
+        tv_version.text = CommonUtils.getVersionName()
     }
 
     private fun exit(){
