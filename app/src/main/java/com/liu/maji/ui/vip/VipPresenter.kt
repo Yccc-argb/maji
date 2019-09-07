@@ -19,8 +19,12 @@ class VipPresenter : BasePresenter<VipView>() {
                         if (t != null) {
                             if (t.isSuccess) {
                                 if (t.data.majiangVOList != null && !t.data.majiangVOList.isEmpty()){
+                                    var mobile = ""
+                                    if (t.data.majiangVOList[0].mobile != null){
+                                        mobile = t.data.majiangVOList[0].mobile
+                                    }
                                     view?.checkChargeInfoResult(t.data.majiangVOList[0].amount,
-                                            t.data.majiangVOList[0].cd,t.data.majiangVOList[0].mobile)
+                                            t.data.majiangVOList[0].cd,mobile)
                                 }
 
                             } else {

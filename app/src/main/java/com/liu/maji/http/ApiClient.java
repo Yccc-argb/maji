@@ -102,7 +102,7 @@ public class ApiClient {
                         }
                     })
 //                    .addInterceptor(new SignInterceptor())
-                    .addInterceptor(new LoggerInterceptor("MJ_LOGGER", true));
+                    .addInterceptor(new LoggerInterceptor("MJ_LOGGER", false));
 
 //            String url = Constant.BASE_URL;
             mRetrofit = new Retrofit.Builder()
