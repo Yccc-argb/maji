@@ -8,7 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cn.com.liu.maji.R
+import com.liu.maji.app.Constant
 import com.liu.maji.base.MySupportFragment
+import com.liu.maji.utils.Prefs
 import com.liu.maji.utils.ToastUtils
 import kotlinx.android.synthetic.main.fragment_invest.*
 import kotlinx.android.synthetic.main.title.*
@@ -58,8 +60,16 @@ class InvestFragment : MySupportFragment<InvestView,InvestPresenter>(), View.OnC
             return
         }
 
-//        showProgress(1)
-        ToastUtils.showToast("提交服务器")
+        val message = et_remarks.text.toString().trim()
+        if (TextUtils.isEmpty(message)){
+            ToastUtils.showToast("请输入提交信息")
+            return
+        }
+
+        showProgress(1)
+//        ToastUtils.showToast("提交服务器")
+        getPresenter().investOrSuggestion(Prefs.getInt(Constant.MERCHANT_ID,0),Prefs.getInt(Constant.AGENT_ID,0),
+               Prefs.getString(Constant.AGENT_NAME,""),name,phone,message)
 
     }
 

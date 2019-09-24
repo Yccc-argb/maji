@@ -125,6 +125,7 @@ public interface ApiService {
     /*
     挂失
      */
+
     @Headers({"Content-Type: application/json", "Accept: application/json"})
     @POST("card/lossCard")
     Observable<CommonResponse> lossCard(@Body RequestBody body);
@@ -134,7 +135,7 @@ public interface ApiService {
      */
     @Headers({"Content-Type: application/json", "Accept: application/json"})
     @POST("card/repairCard/{deviceId}")
-    Observable<CommonResponse> replaceCard(@Path("deviceId") String deviceId,@Body RequestBody body);
+    Observable<CommonResponse> replaceCard(@Path("deviceId") String deviceId, @Body RequestBody body);
 
 
     /*
@@ -151,6 +152,14 @@ public interface ApiService {
     @Headers({"Content-Type: application/json", "Accept: application/json"})
     @POST("equip/openCardquickly")
     Observable<CommonResponse> batchOpenCard(@Body RequestBody body);
+
+
+    /*
+    投资加盟或者建议
+     */
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @POST("advice/addAdvice")
+    Observable<CommonResponse> investOrSuggestion(@Body RequestBody body);
 
 
 

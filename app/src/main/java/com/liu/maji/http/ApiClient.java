@@ -536,6 +536,29 @@ public class ApiClient {
 
 
 
+    /*
+    投资加盟或者意见反馈
+  */
+    public void investOrSuggestion(int merchantId, int agentId, String merchantName,String consumerName, String consumerPhone, String message,
+                              ResponseSubscriber<CommonResponse> subscriber) {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("merchantId", merchantId);
+        map.put("merchantName",merchantName);
+        map.put("consumerId", agentId);
+        map.put("consumerName", consumerName);
+        map.put("consumerPhone", consumerPhone);
+        map.put("message", message);
+
+        String params = JsonUtils.toJSONString(map);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/text; charset=utf-8"), params);
+        apiService.investOrSuggestion(requestBody).subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    }
+
+
+
 
 
 //
