@@ -14,6 +14,7 @@
     <string name="total_benifit"><big><big>3000</big></big>万元\n门店总收益</string>
     <string name="account_is_empty">账号不能为空</string>
     <string name="phone_is_empty">手机号不能为空</string>
+    <string name="phone_is_error">请输入正确的手机号</string>
     <string name="condition_is_empty">查询条件不能为空</string>
     <string name="name_is_empty">姓名不能为空</string>
     <string name="vertify_code_is_empty">验证码不能为空</string>

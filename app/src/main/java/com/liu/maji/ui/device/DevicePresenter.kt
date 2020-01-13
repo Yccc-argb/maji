@@ -3,6 +3,7 @@ package com.liu.maji.ui.device
 import com.liu.maji.base.BasePresenter
 import com.liu.maji.http.ApiClient
 import com.liu.maji.http.ResponseSubscriber
+import com.liu.maji.modle.CommonResponse
 import com.liu.maji.modle.bean.device.ChangeConsumeResponse
 import com.liu.maji.modle.bean.device.ChangeConsumeTypeResultResponse
 import com.liu.maji.modle.bean.device.DeviceInfoResponse
@@ -19,8 +20,8 @@ class DevicePresenter : BasePresenter<DeviceView>() {
                 recordEnd,
                 object : ResponseSubscriber<DeviceInfoResponse>() {
                     override fun onRealSuccess(t: DeviceInfoResponse?) {
-                        if (t!!.isSuccess) {
-                            view!!.getDevicesResult(t)
+                        if (t?.isSuccess == true) {
+                            view?.getDevicesResult(t)
                         } else {
                             ToastUtils.showToast(t!!.message)
                         }
@@ -81,5 +82,18 @@ class DevicePresenter : BasePresenter<DeviceView>() {
 
                     }
                 })
+    }
+
+    fun changeDeviceName(cd : String,newName:String){
+        ApiClient.getInstance().changeDeviceName(cd,newName,object : ResponseSubscriber<CommonResponse>(){
+            override fun onRealSuccess(t: CommonResponse?) {
+                hideProgress()
+                if (t?.isSuccess == true){
+                    view?.changeDeviceNameResult(true)
+                }else {
+                    ToastUtils.showToast(t?.message)
+                }
+            }
+        })
     }
 }

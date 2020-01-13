@@ -28,5 +28,8 @@ class MainActivity : MySupportActivity<MainView,MainPresenter>() {
             loadRootFragment(R.id.fl,HomeFragment())
     }
 
-
+    override fun onDestroy() {
+        println("MainActivity销毁")
+        super.onDestroy()
+    }
 }

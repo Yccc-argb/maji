@@ -5,6 +5,8 @@ import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.liu.maji.modle.CommonResponse;
+import com.liu.maji.modle.bean.AdResponse;
+import com.liu.maji.modle.bean.AppVersionResponse;
 import com.liu.maji.modle.bean.charge_history.ChargeHistoryResponse;
 import com.liu.maji.modle.bean.device.ChangeConsumeResponse;
 import com.liu.maji.modle.bean.device.ChangeConsumeTypeResultResponse;
@@ -102,7 +104,7 @@ public class ApiClient {
                         }
                     })
 //                    .addInterceptor(new SignInterceptor())
-                    .addInterceptor(new LoggerInterceptor("MJ_LOGGER", false));
+                    .addInterceptor(new LoggerInterceptor("MJ_LOGGER", true));
 
 //            String url = Constant.BASE_URL;
             mRetrofit = new Retrofit.Builder()
@@ -365,7 +367,7 @@ public class ApiClient {
     /*
    查询所有会员信息
     */
-    public void queryVipInfoByMobile(int merchantId, int agentId, String cd, String mobilePhone,String status,String enabledFlag, ResponseSubscriber<VipInfoResponse> subscriber) {
+    public void queryVipInfoByMobile(int merchantId, int agentId, String cd, String mobilePhone, String status, String enabledFlag, ResponseSubscriber<VipInfoResponse> subscriber) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("merchantId", merchantId);
         map.put("agentId", agentId);
@@ -436,8 +438,8 @@ public class ApiClient {
     /*
     停止刷卡盘
   */
-    public void stopSwipe(int merchantId,int agentId,String diviceID,String switchFlag,String sonsumType
-                          ,String consumNumber,String equipId,ResponseSubscriber<ChangeConsumeTypeResultResponse> subscriber) {
+    public void stopSwipe(int merchantId, int agentId, String diviceID, String switchFlag, String sonsumType
+            , String consumNumber, String equipId, ResponseSubscriber<ChangeConsumeTypeResultResponse> subscriber) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("merchantId", merchantId);
         map.put("agentId", agentId);
@@ -459,7 +461,7 @@ public class ApiClient {
     /*
     挂失卡
   */
-    public void lossCard(int merchantId,int agentId,String cd,String mobile,String newCd,ResponseSubscriber<CommonResponse> subscriber) {
+    public void lossCard(int merchantId, int agentId, String cd, String mobile, String newCd, ResponseSubscriber<CommonResponse> subscriber) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("merchantId", merchantId);
         map.put("agentId", agentId);
@@ -477,7 +479,7 @@ public class ApiClient {
     /*
     挂失卡
   */
-    public void replaceCard(int merchantId,int agentId,String cd,String deviceId,String mobile,String newCd,ResponseSubscriber<CommonResponse> subscriber) {
+    public void replaceCard(int merchantId, int agentId, String cd, String deviceId, String mobile, String newCd, ResponseSubscriber<CommonResponse> subscriber) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("merchantId", merchantId);
         map.put("agentId", agentId);
@@ -487,7 +489,7 @@ public class ApiClient {
 
         String params = JsonUtils.toJSONString(map);
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/text; charset=utf-8"), params);
-        apiService.replaceCard(deviceId,requestBody).subscribeOn(Schedulers.io())
+        apiService.replaceCard(deviceId, requestBody).subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);
@@ -496,7 +498,7 @@ public class ApiClient {
     /*
     退卡
   */
-    public void refundCard(int merchantId,int agentId,String cd,String mobile,ResponseSubscriber<CommonResponse> subscriber) {
+    public void refundCard(int merchantId, int agentId, String cd, String mobile, ResponseSubscriber<CommonResponse> subscriber) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("merchantId", merchantId);
         map.put("agentId", agentId);
@@ -515,8 +517,8 @@ public class ApiClient {
     /*
     批量开卡
   */
-    public void batchOpenCard(int merchantId,int agentId,String onlineAmount,String offlineAmount,String giveAmount,
-                              String openCardModel,String diviceID,ResponseSubscriber<CommonResponse> subscriber) {
+    public void batchOpenCard(int merchantId, int agentId, String onlineAmount, String offlineAmount, String giveAmount,
+                              String openCardModel, String diviceID, ResponseSubscriber<CommonResponse> subscriber) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("merchantId", merchantId);
         map.put("agentId", agentId);
@@ -535,15 +537,14 @@ public class ApiClient {
     }
 
 
-
     /*
     投资加盟或者意见反馈
   */
-    public void investOrSuggestion(int merchantId, int agentId, String merchantName,String consumerName, String consumerPhone, String message,
-                              ResponseSubscriber<CommonResponse> subscriber) {
+    public void investOrSuggestion(int merchantId, int agentId, String merchantName, String consumerName, String consumerPhone, String message,
+                                   ResponseSubscriber<CommonResponse> subscriber) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("merchantId", merchantId);
-        map.put("merchantName",merchantName);
+        map.put("merchantName", merchantName);
         map.put("consumerId", agentId);
         map.put("consumerName", consumerName);
         map.put("consumerPhone", consumerPhone);
@@ -558,7 +559,83 @@ public class ApiClient {
     }
 
 
+    /*
+    重置密码
+    */
 
+    public void resetPassword(String mobilePhone, ResponseSubscriber<CommonResponse> subscriber) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("mobilePhone", mobilePhone);
+        String params = JsonUtils.toJSONString(map);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/text; charset=utf-8"), params);
+        apiService.resetPassword(requestBody).subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    }
+
+    /*
+    修改密码
+    */
+    public void changePassword(String mobilePhone, String oldPassword, String newPassword, ResponseSubscriber<CommonResponse> subscriber) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("mobilePhone", mobilePhone);
+        map.put("newPassword", newPassword);
+        map.put("password", oldPassword);
+        String params = JsonUtils.toJSONString(map);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/text; charset=utf-8"), params);
+        apiService.changePassword(requestBody).subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    }
+
+
+
+
+    /*
+    获取广告数据
+    */
+
+    public void getAdData(String merchantId, ResponseSubscriber<AdResponse> subscriber) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("merchantId", merchantId);
+        String params = JsonUtils.toJSONString(map);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/text; charset=utf-8"), params);
+        apiService.getAdData(requestBody).subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    }
+
+
+    /*
+    获取广告数据
+    */
+
+    public void syncAppVersion(ResponseSubscriber<AppVersionResponse> subscriber) {
+//        HashMap<String, String> map = new HashMap<>();
+//        map.put("merchantId", merchantId);
+//        String params = JsonUtils.toJSONString(map);
+//        RequestBody
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/text; charset=utf-8"), "");
+        apiService.syncAppVersion(requestBody).subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    }
+
+    public void changeDeviceName(String cd,String newName,ResponseSubscriber<CommonResponse> subscriber){
+        HashMap<String, String> map = new HashMap<>();
+        map.put("cd", cd);
+        map.put("equipmentName", newName);
+        String params = JsonUtils.toJSONString(map);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/text; charset=utf-8"), params);
+        apiService.changeDeviceName(requestBody).subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    }
 
 
 //

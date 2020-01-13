@@ -39,6 +39,7 @@ public class DeviceAdapter extends BaseQuickAdapter<DeviceInfoResponse.DataBean.
     protected void convert(final BaseViewHolder helper, DeviceInfoResponse.DataBean.RecordsBean item) {
         helper.addOnClickListener(R.id.tv_change_consume);
         helper.addOnClickListener(R.id.tv_time);
+        helper.addOnLongClickListener(R.id.tv_device_number);
         helper.setText(R.id.tv_store_number,"门店编号: "+String.valueOf(item.getAgentId()));
         helper.setText(R.id.tv_device_number,"设备名称: "+String.valueOf(item.getName()));
         helper.setText(R.id.tv_hardware_number,"硬件编号: "+String.valueOf(item.getCd()));

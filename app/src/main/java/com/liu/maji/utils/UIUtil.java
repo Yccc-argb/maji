@@ -64,10 +64,9 @@ public class UIUtil {
     /**
      * 获取当前应用程序的包名
      *
-     * @param resId
      * @return
      */
-    public static String getPackageName(int resId) {
+    public static String getPackageName() {
         return geContext().getPackageName();
     }
 

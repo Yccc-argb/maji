@@ -1,10 +1,15 @@
 package com.liu.maji.ui.forget_password
 
 
+import android.content.Intent
+import android.os.Process
 import android.text.TextUtils
 import android.view.View
 import cn.com.liu.maji.R
+import com.liu.maji.base.ActivityCollector
 import com.liu.maji.base.MySupportActivity
+import com.liu.maji.ui.login.LoginActivity
+import com.liu.maji.utils.Prefs
 import com.liu.maji.utils.RxTimeUtils
 import kotlinx.android.synthetic.main.activity_forget_code.*
 import kotlinx.android.synthetic.main.title.*
@@ -20,9 +25,15 @@ class ForgetPasswordActivity : MySupportActivity<ForgetView, ForgetPresenter>(),
     private var mSubscritionp: Subscription? = null
 
 
-    override fun onCommitNewPasswordResult(isSuccess: Boolean) {
-        this.finish()
-        toast("修改成功,请重新登录")
+    override fun onCommitNewPasswordResult(isSuccess: Boolean?) {
+        toast("密码修改成功")
+        Prefs.clear()
+        val intent = Intent(this, LoginActivity::class.java)
+//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+        for (item in ActivityCollector.activityList){
+            item.finish()
+        }
     }
 
 
@@ -42,7 +53,7 @@ class ForgetPasswordActivity : MySupportActivity<ForgetView, ForgetPresenter>(),
 
     override fun init() {
 
-        tv_title.text = getString(R.string.forget_password)
+        tv_title.text = "修改密码"
         tv_add.visibility = View.INVISIBLE
         iv_back.setOnClickListener(this)
         //设置点击事件
@@ -122,8 +133,8 @@ class ForgetPasswordActivity : MySupportActivity<ForgetView, ForgetPresenter>(),
     private fun checkCondition() {
         //手机号
         val phone = et_phone.text.toString().trim()
-        if (TextUtils.isEmpty(phone)) {
-            toast(getString(R.string.account_is_empty))
+        if (TextUtils.isEmpty(phone) || phone.length != 11) {
+            toast(getString(R.string.phone_is_error))
             return
         }
 
@@ -131,13 +142,18 @@ class ForgetPasswordActivity : MySupportActivity<ForgetView, ForgetPresenter>(),
 //            toast("手机号非法")
 //            return
 //        }
-        val code = et_code.text.toString().trim()
+//        val code = et_code.text.toString().trim()
+//
+//        if (TextUtils.isEmpty(code)) {
+//            toast(getString(R.string.code_is_empty))
+//            return
+//        }
 
-        if (TextUtils.isEmpty(code)) {
-            toast(getString(R.string.code_is_empty))
+        val oldPassword = et_password_old.text.toString().trim()
+        if (TextUtils.isEmpty(oldPassword)) {
+            toast("原密码不能为空")
             return
         }
-
         val password = et_password.text.toString().trim()
         if (TextUtils.isEmpty(password)) {
             toast(getString(R.string.input_new_password))
@@ -156,14 +172,16 @@ class ForgetPasswordActivity : MySupportActivity<ForgetView, ForgetPresenter>(),
         }
 
         //服务器请求
-        toast("提交新密码")
-        getPresenter().commitNewPasswordToService(phone)
+        showProgress(1)
+        getPresenter().commitNewPasswordToService(phone, oldPassword, passwordNew)
     }
 
 
     override fun onDestroy() {
-        super.onDestroy()
+        println("ForgetPasswordActivity销毁")
         mSubscritionp?.unsubscribe()
         mSubscritionp = null
+        super.onDestroy()
+
     }
 }

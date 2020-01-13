@@ -4,5 +4,5 @@ import com.liu.maji.base.BaseView
 
 interface ForgetView:BaseView {
 
-    fun onCommitNewPasswordResult(isSuccess:Boolean)
+    fun onCommitNewPasswordResult(isSuccess:Boolean?)
 }

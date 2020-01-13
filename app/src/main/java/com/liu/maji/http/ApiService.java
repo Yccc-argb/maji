@@ -2,6 +2,8 @@ package com.liu.maji.http;
 
 
 import com.liu.maji.modle.CommonResponse;
+import com.liu.maji.modle.bean.AdResponse;
+import com.liu.maji.modle.bean.AppVersionResponse;
 import com.liu.maji.modle.bean.charge_history.ChargeHistoryResponse;
 import com.liu.maji.modle.bean.device.ChangeConsumeResponse;
 import com.liu.maji.modle.bean.device.ChangeConsumeTypeResultResponse;
@@ -160,6 +162,45 @@ public interface ApiService {
     @Headers({"Content-Type: application/json", "Accept: application/json"})
     @POST("advice/addAdvice")
     Observable<CommonResponse> investOrSuggestion(@Body RequestBody body);
+
+
+
+    /*
+    重置密码
+     */
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @POST("smsResetPassWord")
+    Observable<CommonResponse> resetPassword(@Body RequestBody body);
+
+
+
+    /*
+    重置密码
+     */
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @POST("changePassWord")
+    Observable<CommonResponse> changePassword(@Body RequestBody body);
+
+    /*
+    获取广告数据
+     */
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @POST("advertisement/listAdvertisement")
+    Observable<AdResponse> getAdData(@Body RequestBody body);
+
+    /*
+    同步app版本信息
+     */
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @POST("app/getApp")
+    Observable<AppVersionResponse> syncAppVersion(@Body RequestBody body);
+
+    /*
+    更改设备名字
+     */
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @POST("equip/changeEquipeMent")
+    Observable<CommonResponse> changeDeviceName(@Body RequestBody body);
 
 
 

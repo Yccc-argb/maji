@@ -50,7 +50,10 @@ class VipInfoFragment : MySupportFragment<VipInfoView,VipInfoPresenter>(), View.
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.tv_add
-                    ->start(RegisterVipFragment())
+                    ->{
+                start(RegisterVipFragment())
+            }
+
             R.id.iv_search
                     ->searchVipByPhoneNUmber()
             R.id.rl_btn_sure

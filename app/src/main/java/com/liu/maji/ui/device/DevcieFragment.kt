@@ -1,5 +1,6 @@
 package com.liu.maji.ui.device
 
+import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.BottomSheetDialog
 import android.support.v7.widget.LinearLayoutManager
@@ -29,7 +30,66 @@ import kotlinx.android.synthetic.main.fragment_device.*
 import kotlinx.android.synthetic.main.title.*
 
 
-class DevcieFragment : MySupportFragment<DeviceView, DevicePresenter>(), BGARefreshLayout.BGARefreshLayoutDelegate, View.OnClickListener, DeviceView, BaseQuickAdapter.OnItemChildClickListener, BaseQuickAdapter.OnItemClickListener, SimpleDialog.DialogClickListener {
+class DevcieFragment : MySupportFragment<DeviceView, DevicePresenter>(), BGARefreshLayout.BGARefreshLayoutDelegate, View.OnClickListener, DeviceView, BaseQuickAdapter.OnItemChildClickListener, BaseQuickAdapter.OnItemClickListener,
+        SimpleDialog.DialogClickListener, BaseQuickAdapter.OnItemChildLongClickListener {
+    override fun changeDeviceNameResult(b: Boolean) {
+        //跟新设备名称的结果
+        toast("修改成功")
+        when(selectType){
+            0->{
+                //在线设备
+                for(item in devcieList){
+                    if (item.cd == deviceCd){
+                        item.name = newDeviceName
+                        break
+                    }
+                }
+
+            }
+
+            1->{
+                for(item in devcieOnLineList){
+                    if (item.cd == deviceCd){
+                        item.name = newDeviceName
+                        break
+                    }
+                }
+
+            }
+
+            2->{
+                for(item in devcieOffLineList){
+                    if (item.cd == deviceCd){
+                        item.name = newDeviceName
+                        break
+                    }
+                }
+            }
+        }
+        deviceAdapter?.notifyDataSetChanged()
+    }
+
+    override fun onItemChildLongClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int): Boolean {
+        val item = deviceAdapter?.getItem(position)
+        deviceCd = item?.cd ?: ""
+        if (dialog == null){
+            dialog = SimpleDialog(mActivity, R.style.circle_dialog)
+        }
+        dialog?.showChangeDeviceNameDialog(this)
+        return true
+    }
+
+
+    override fun onConfirm(type: String) {
+        if (dialog != null) {
+            dialog!!.dismiss()
+            dialog = null
+        }
+        showProgress(1)
+        newDeviceName = type
+        getPresenter().changeDeviceName(deviceCd,newDeviceName)
+
+    }
 
 
     override fun onCancel() {
@@ -54,7 +114,12 @@ class DevcieFragment : MySupportFragment<DeviceView, DevicePresenter>(), BGARefr
 
     private var currentPage: Int = 1
     private val pageCounts: Int = 10
-    private var devcieList: MutableList<DeviceInfoResponse.DataBean.RecordsBean>? = ArrayList()
+    //总设备数
+    private var devcieList: MutableList<DeviceInfoResponse.DataBean.RecordsBean> = ArrayList()
+    //在线设备数
+    private var devcieOnLineList: MutableList<DeviceInfoResponse.DataBean.RecordsBean> = ArrayList()
+    //离线设备数
+    private var devcieOffLineList: MutableList<DeviceInfoResponse.DataBean.RecordsBean> = ArrayList()
     private var deviceAdapter: DeviceAdapter? = null
     private var refreshLayout: BGARefreshLayout? = null
     private var type: Int? = 0
@@ -71,6 +136,9 @@ class DevcieFragment : MySupportFragment<DeviceView, DevicePresenter>(), BGARefr
     private var equipId: Int = 0
     private var deviceId: String = ""
     private var consumNumber: Int = 0
+    private var selectType = 0
+    private var deviceCd = ""
+    private var newDeviceName = ""
 
 
     override fun changeConsumeTypeResult(t: ChangeConsumeTypeResultResponse) {
@@ -83,6 +151,8 @@ class DevcieFragment : MySupportFragment<DeviceView, DevicePresenter>(), BGARefr
             println("回掉下拉刷新")
             showProgress(1)
             devcieList?.clear()
+            devcieOffLineList.clear()
+            devcieOnLineList.clear()
             this.currentPage = 1
             getPresenter().getDevices(Prefs.getInt(Constant.AGENT_ID, 0), Prefs.getInt(Constant.MERCHANT_ID, 0),
                     currentPage, pageCounts, (currentPage - 1) * 10 + 1, currentPage * 10)
@@ -150,6 +220,10 @@ class DevcieFragment : MySupportFragment<DeviceView, DevicePresenter>(), BGARefr
 
         dialog = SimpleDialog(mActivity, R.style.circle_dialog)
         dialog?.showCommonDialog(1, "确定更改当前刷卡盘配置", object : SimpleDialog.DialogClickListener {
+            override fun onConfirm(type: String?) {
+
+            }
+
             override fun onConfirm(type: Int) {
                 dialog?.dismiss()
                 dialog = null
@@ -164,7 +238,6 @@ class DevcieFragment : MySupportFragment<DeviceView, DevicePresenter>(), BGARefr
                 dialog = null
             }
         })
-
 
 
     }
@@ -189,6 +262,9 @@ class DevcieFragment : MySupportFragment<DeviceView, DevicePresenter>(), BGARefr
         tv_title.text = "我的设备"
         tv_add.visibility = View.INVISIBLE
         iv_back.setOnClickListener(this)
+        tv_total_device.setOnClickListener(this)
+        tv_online_device.setOnClickListener(this)
+        tv_offline_device.setOnClickListener(this)
         initBGRefreshLayout(mRefreshLayout)
         initDeviceData()
     }
@@ -199,11 +275,6 @@ class DevcieFragment : MySupportFragment<DeviceView, DevicePresenter>(), BGARefr
         getPresenter().getDevices(Prefs.getInt(Constant.AGENT_ID, 0), Prefs.getInt(Constant.MERCHANT_ID, 0),
                 currentPage, pageCounts, (currentPage - 1) * 10, currentPage * 10)
 
-//        val dataList = ArrayList<String>()
-//        for (i in 1..10) {
-//            println(i)
-//            dataList.add("" + i)
-//        }
     }
 
 
@@ -226,6 +297,8 @@ class DevcieFragment : MySupportFragment<DeviceView, DevicePresenter>(), BGARefr
         println("回掉下拉刷新")
         showProgress(1)
         devcieList?.clear()
+        devcieOffLineList.clear()
+        devcieOnLineList.clear()
         this.currentPage = 1
         getPresenter().getDevices(Prefs.getInt(Constant.AGENT_ID, 0), Prefs.getInt(Constant.MERCHANT_ID, 0),
                 currentPage, pageCounts, (currentPage - 1) * 10 + 1, currentPage * 10)
@@ -246,6 +319,14 @@ class DevcieFragment : MySupportFragment<DeviceView, DevicePresenter>(), BGARefr
             ToastUtils.showToast("没有更多数据了")
         } else {
             devcieList?.addAll(records)
+            //
+            for (item in records) {
+                if (item.isIsOnline) {
+                    devcieOnLineList.add(item)
+                } else {
+                    devcieOffLineList.add(item)
+                }
+            }
             currentPage = deviceInfoBean.data.page + 1  //当前页数
             val totalNum = deviceInfoBean.totalNum   //总设备
             val onlineNum = deviceInfoBean.onlineNum
@@ -253,17 +334,21 @@ class DevcieFragment : MySupportFragment<DeviceView, DevicePresenter>(), BGARefr
             tv_total_device.text = Html.fromHtml("<big><big>$totalNum</big></big>台<br/>激活总设备")
             tv_online_device.text = Html.fromHtml("<big><big>$onlineNum</big></big>台<br/>在线")
             tv_offline_device.text = Html.fromHtml("<big><big>$offlineNum</big></big>台<br/>离线")
+            //
             if (deviceAdapter == null) {
                 deviceAdapter = DeviceAdapter(R.layout.item_device, devcieList)
                 val linearLayoutManager = LinearLayoutManager(_mActivity)
                 rlv_device.layoutManager = linearLayoutManager
                 rlv_device.adapter = deviceAdapter
-                deviceAdapter?.setOnItemChildClickListener(this)
+                deviceAdapter?.onItemChildClickListener = this
+                deviceAdapter?.onItemChildLongClickListener = this
 
             } else {
-                deviceAdapter?.setNewData(devcieList)
-
-
+                when (selectType) {
+                    0 -> deviceAdapter?.setNewData(devcieList)
+                    1 -> deviceAdapter?.setNewData(devcieOnLineList)
+                    2 -> deviceAdapter?.setNewData(devcieOffLineList)
+                }
             }
         }
 
@@ -293,10 +378,49 @@ class DevcieFragment : MySupportFragment<DeviceView, DevicePresenter>(), BGARefr
     }
 
     override fun onClick(v: View?) {
-        when (v!!.id) {
+        when (v?.id) {
             R.id.iv_back
             -> _mActivity.onBackPressed()
+            R.id.tv_total_device
+            -> {
+                //总设备数
+                if (selectType != 0) {
+                    setBackground(tv_total_device, tv_online_device, tv_offline_device)
+                    selectType = 0
+                    deviceAdapter?.setNewData(devcieList)
+                }
+
+            }
+            R.id.tv_online_device
+            -> {
+                //在线设备数
+                if (selectType != 1) {
+                    setBackground(tv_online_device, tv_total_device, tv_offline_device)
+                    selectType = 1
+                    deviceAdapter?.setNewData(devcieOnLineList)
+                }
+
+            }
+            R.id.tv_offline_device
+            -> {
+                //离线设备数
+                if (selectType != 2) {
+                    setBackground(tv_offline_device, tv_total_device, tv_online_device)
+                    selectType = 2
+                    deviceAdapter?.setNewData(devcieOffLineList)
+                }
+
+            }
         }
+    }
+
+    private fun setBackground(tv0: TextView, tv1: TextView, tv2: TextView) {
+        tv0.setBackgroundResource(R.drawable.bg_kuangkuang)
+        tv0.setTextColor(Color.WHITE)
+        tv1.setBackgroundResource(R.drawable.bg_kuangkuang_unselect)
+        tv1.setTextColor(Color.parseColor("#5837B6"))
+        tv2.setBackgroundResource(R.drawable.bg_kuangkuang_unselect)
+        tv2.setTextColor(Color.parseColor("#5837B6"))
     }
 
     override fun onDestroyView() {
@@ -304,6 +428,9 @@ class DevcieFragment : MySupportFragment<DeviceView, DevicePresenter>(), BGARefr
         if (deviceAdapter != null) {
             deviceAdapter?.cancelAllTimers()
             deviceAdapter = null
+        }
+        if (dialog != null){
+            dialog = null
         }
     }
 

@@ -50,7 +50,8 @@
     <RelativeLayout
 
         android:layout_width="match_parent"
-        android:layout_height="60dp">
+        android:layout_height="60dp"
+        android:visibility="gone">
         <TextView
             android:textColor="@color/color_333"
             android:id="@+id/tv_code"
@@ -94,6 +95,39 @@
             android:background="@color/color_eee"/>
     </RelativeLayout>
     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <TextView
+            android:textColor="@color/color_333"
+            android:id="@+id/tv_password_old"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="原密码"/>
+        <EditText
+            android:id="@+id/et_password_old"
+            android:layout_marginLeft="44dp"
+            android:layout_marginRight="20dp"
+            android:background="@null"
+            android:layout_centerVertical="true"
+            android:textCursorDrawable="@drawable/bg_edittext_cursor"
+            android:layout_toRightOf="@+id/tv_password_old"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_333"
+            android:textSize="16sp"
+            android:maxLength="11"
+            android:inputType="numberPassword"
+            android:hint="请输入"/>
+        <View
+            android:layout_marginLeft="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/color_eee"/>
+    </RelativeLayout><RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp">
         <TextView

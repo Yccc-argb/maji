@@ -9,4 +9,5 @@ interface DeviceView :BaseView{
     fun getDevicesResult(deviceInfoBean: DeviceInfoResponse)
     fun getConsumeTypeResult(changeConsumeResponse: ChangeConsumeResponse)
     fun changeConsumeTypeResult(t: ChangeConsumeTypeResultResponse)
+    fun changeDeviceNameResult(b: Boolean)
 }

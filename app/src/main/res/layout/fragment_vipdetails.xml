@@ -135,10 +135,12 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/color_333"
                 android:textSize="16sp"
-                android:maxLength="11"
+                android:singleLine="true"
+                android:ellipsize="end"
                 android:hint="请选择"/>
 
             <TextView
+
                 android:id="@+id/tv_xiala"
                 android:layout_width="25dp"
                 android:layout_height="25dp"

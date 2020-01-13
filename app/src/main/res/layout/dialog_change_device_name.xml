@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="110dp"
+    android:background="@drawable/bg_dialog">
+
+
+
+
+    <EditText
+        android:id="@+id/et_new_device_name"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/color_999"
+        android:background="@null"
+        android:gravity="center"
+        android:hint="点击输入新的设备名称"/>
+
+    <View
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_CECECE"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:text="取消"/>
+        <View
+            android:layout_gravity="center_vertical"
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:background="@color/color_CECECE"/>
+        <TextView
+            android:textColor="#f00"
+            android:text="确定"
+            android:id="@+id/tv_sure"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>

@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.title.*
 
 class VipFragment : MySupportFragment<VipView, VipPresenter>(), View.OnClickListener, VipView, TextWatcher {
 
-
+    var imei: String = ""
 
     override fun checkChargeInfoResult(amount: Int, cardNum: String, mobile: String) {
         hideProgress()
@@ -32,6 +32,7 @@ class VipFragment : MySupportFragment<VipView, VipPresenter>(), View.OnClickList
         bundle.putInt("amount", amount)
         bundle.putString("cardNum", cardNum)
         bundle.putString("mobile", mobile)
+        bundle.putString("imei", imei)
 
         val vipDetailsFragment = VipDetailsFragment()
         vipDetailsFragment.arguments = bundle
@@ -79,7 +80,7 @@ class VipFragment : MySupportFragment<VipView, VipPresenter>(), View.OnClickList
     }
 
 
-    private fun startQR(){
+    private fun startQR() {
         val rxPermissions = RxPermissions(this)
         rxPermissions.request(Manifest.permission.CAMERA).subscribe { granted ->
             if (granted!!) {
@@ -92,6 +93,7 @@ class VipFragment : MySupportFragment<VipView, VipPresenter>(), View.OnClickList
         }
 
     }
+
     private fun checkPhoneAndVipNumber() {
 
 
@@ -108,32 +110,42 @@ class VipFragment : MySupportFragment<VipView, VipPresenter>(), View.OnClickList
 //            return
 //        }
 
-        if (TextUtils.isEmpty(phone) && TextUtils.isEmpty(vipNumber)){
+        if (TextUtils.isEmpty(phone) && TextUtils.isEmpty(vipNumber)) {
             ToastUtils.showToast("请输入手机号或者卡号")
             return
         }
         showProgress(1)
         getPresenter().checkChargeInfo(Prefs.getInt(Constant.AGENT_ID, 0), Prefs.getInt(Constant.MERCHANT_ID, 0),
-                vipNumber,phone)
+                vipNumber, phone)
     }
 
     override fun onFragmentResult(requestCode: Int, resultCode: Int, data: Bundle?) {
         super.onFragmentResult(requestCode, resultCode, data)
         if (requestCode == 0) {
-            val vipNumber = data?.getString(CodeUtils.RESULT_STRING)
-            if (TextUtils.isEmpty(vipNumber)) {
-                toast(getString(R.string.get_vip_number_fail))
-                return
+            val vipNumberAndImei = data?.getString(CodeUtils.RESULT_STRING)
+            val split = vipNumberAndImei?.split("#/#")
+            if (split?.isNotEmpty() == true) {
+                var vipNumber: String
+                if (split.size == 2) {
+                    vipNumber = split[0]    //卡号
+                    imei = split[1]      //充值机号
+                } else {
+                    vipNumber = split[0]
+                    imei = ""
+                }
+                if (TextUtils.isEmpty(vipNumber)) {
+                    toast(getString(R.string.get_vip_number_fail))
+                    return
+                }
+                et_vip.setText(vipNumber)
+                showProgress(1)
+                getPresenter().checkChargeInfo(Prefs.getInt(Constant.AGENT_ID, 0), Prefs.getInt(Constant.MERCHANT_ID, 0),
+                        vipNumber, "")
+
             }
-            et_vip.setText(data?.getString(CodeUtils.RESULT_STRING))
-            showProgress(1)
-            getPresenter().checkChargeInfo(Prefs.getInt(Constant.AGENT_ID, 0), Prefs.getInt(Constant.MERCHANT_ID, 0),
-                    data?.getString(CodeUtils.RESULT_STRING)!!,"")
+
 
         }
-
-//        println("requestCode$requestCode")
-//        println(data?.getString(CodeUtils.RESULT_STRING))
     }
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -141,29 +153,36 @@ class VipFragment : MySupportFragment<VipView, VipPresenter>(), View.OnClickList
     }
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        if (et_phone.hasFocus()){
+        if (et_phone.hasFocus()) {
 
             val phone = et_phone.text.toString().trim()
-            if (!TextUtils.isEmpty(phone) && phone.length == 11){
+            if (!TextUtils.isEmpty(phone) && phone.length == 11) {
                 showProgress(1)
                 //手机号满足要求
                 getPresenter().checkChargeInfo(Prefs.getInt(Constant.AGENT_ID, 0), Prefs.getInt(Constant.MERCHANT_ID, 0),
-                        "",phone)
+                        "", phone)
             }
         }
-        if (et_vip.hasFocus()){
+        if (et_vip.hasFocus()) {
 
             val cd = et_vip.text.toString().trim()
-            if (!TextUtils.isEmpty(cd) && cd.length == 10){
+            if (!TextUtils.isEmpty(cd) && cd.length == 10) {
                 showProgress(1)
                 //卡号满足要求
                 getPresenter().checkChargeInfo(Prefs.getInt(Constant.AGENT_ID, 0), Prefs.getInt(Constant.MERCHANT_ID, 0),
-                        cd,"")
+                        cd, "")
             }
         }
     }
 
     override fun afterTextChanged(s: Editable?) {
 
+    }
+
+    override fun onSupportInvisible() {
+        super.onSupportInvisible()
+        //用户不可见
+        imei = ""
+        et_vip.setText("")
     }
 }

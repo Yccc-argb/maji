@@ -35,6 +35,10 @@ import rx.Subscription
 import java.util.concurrent.TimeUnit
 
 class RegisterVipFragment : MySupportFragment<RegisterVipView, RegisterVipPresenter>(), View.OnClickListener, RegisterVipView, BaseQuickAdapter.OnItemClickListener, SimpleDialog.DialogClickListener {
+    override fun onConfirm(type: String?) {
+
+    }
+
     override fun changeBatchModleResult(b: Boolean) {
 //       if (b){
 //          //开启
@@ -374,7 +378,7 @@ class RegisterVipFragment : MySupportFragment<RegisterVipView, RegisterVipPresen
             rl_charge_mechine_num.visibility = View.VISIBLE
             rl_vip_phone.visibility = View.GONE
             rl_vertify_code.visibility = View.GONE
-            tv_name.setText("开卡点数")
+            tv_name.text = "开卡点数"
             et_charge_num.setText("")
             et_name.setText("")
             if (!TextUtils.isEmpty(Prefs.getString("deviceName",""))){
@@ -412,16 +416,26 @@ class RegisterVipFragment : MySupportFragment<RegisterVipView, RegisterVipPresen
     override fun onFragmentResult(requestCode: Int, resultCode: Int, data: Bundle?) {
         super.onFragmentResult(requestCode, resultCode, data)
         if (requestCode == 1) {
-            val vipNumber = data?.getString(CodeUtils.RESULT_STRING)
-            if (TextUtils.isEmpty(vipNumber)) {
+            val vipNumberAndImei = data?.getString(CodeUtils.RESULT_STRING)
+            val split = vipNumberAndImei?.split("#/#")
+            if (split?.isNotEmpty() == true) {
+                if (split.size == 2){
+                    et_vip.setText(split[0])
+                    et_charge_num.setText(split[1])
+                    devcieNumCharge = split[1]
+                }else {
+                    et_vip.setText(split[0])
+                }
+            }else {
                 toast(getString(R.string.get_vip_number_fail))
                 return
             }
-            et_vip.setText(data?.getString(CodeUtils.RESULT_STRING))
+//            val vipNumber = data?.getString(CodeUtils.RESULT_STRING)
+//            if (TextUtils.isEmpty(vipNumber)) {
+//
+//            }
+//            et_vip.setText(data?.getString(CodeUtils.RESULT_STRING))
         }
-
-//        println("requestCode$requestCode")
-//        println(data?.getString(CodeUtils.RESULT_STRING))
     }
 
     override fun onDestroy() {

@@ -77,45 +77,67 @@
                 android:src="@drawable/ic_more_list" />
         </RelativeLayout>
         <RelativeLayout
-            android:id="@+id/rl_version"
+            android:id="@+id/rl_change_password"
             android:background="@color/color_white"
-
             android:layout_width="match_parent"
             android:layout_height="60dp">
-
             <TextView
                 android:textColor="@color/color_333"
-                android:id="@+id/tv"
+                android:id="@+id/tv_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
-                android:text="版本更新"
+                android:text="修改密码"
                 android:textSize="16sp" />
-            <TextView
-                android:id="@+id/tv_version"
-                android:layout_toRightOf="@+id/tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="40dp"
-                android:text="1.0.0"
-                android:textColor="@color/color_333"
-                android:textSize="16sp" />
-
-
-
-
 
             <ImageView
-                android:visibility="invisible"
+                android:visibility="visible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="25dp"
                 android:src="@drawable/ic_more_list" />
         </RelativeLayout>
+        <RelativeLayout
+        android:id="@+id/rl_version"
+        android:background="@color/color_white"
+
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <TextView
+            android:textColor="@color/color_333"
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="版本更新"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/tv_version"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="1.0.0"
+            android:textColor="@color/color_333"
+            android:textSize="16sp" />
+
+        <!--<ImageView-->
+        <!--android:visibility="invisible"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_marginRight="20dp"-->
+        <!--android:src="@drawable/ic_more_list" />-->
+    </RelativeLayout>
+
+
         <RelativeLayout
             android:id="@+id/rl_exit"
             android:layout_width="wrap_content"

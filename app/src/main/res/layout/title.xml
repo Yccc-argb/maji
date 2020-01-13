@@ -12,6 +12,9 @@
         android:layout_marginLeft="16dp"
         android:src="@drawable/ic_back_title" />
     <TextView
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="35dp"
+        android:singleLine="true"
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

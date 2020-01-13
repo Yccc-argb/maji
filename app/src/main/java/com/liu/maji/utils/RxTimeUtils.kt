@@ -4,9 +4,7 @@ package com.liu.maji.utils
 import rx.Observable
 
 import rx.android.schedulers.AndroidSchedulers
-import rx.functions.Func1
 import java.util.concurrent.TimeUnit
-import javax.security.auth.Subject
 
 /**
  * 倒计时工具类

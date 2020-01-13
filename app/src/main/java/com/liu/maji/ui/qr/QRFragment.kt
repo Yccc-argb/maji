@@ -45,7 +45,7 @@ class QRFragment : MySupportFragment<QRView, QRPresenter>(), View.OnClickListene
      */
     private var analyzeCallback: CodeUtils.AnalyzeCallback = object : CodeUtils.AnalyzeCallback {
         override fun onAnalyzeSuccess(mBitmap: Bitmap, result: String) {
-            toast("解析成功")
+//            toast("解析成功")
             println("result:$result")
             val resultIntent = Intent()
             val bundle = Bundle()

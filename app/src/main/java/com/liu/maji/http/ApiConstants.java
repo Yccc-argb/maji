@@ -81,7 +81,9 @@ public final class ApiConstants {
     public final static String API_LOGIN = "app.consumer.login";
 
 
-    public final static String TEST_URL =  "http://1z853v1704.iok.la:54527/web-wechart/mj/api/android/";
+    public final static String LOCAL_URL =  "http://1z853v1704.iok.la:54527/web-wechart/mj/api/android/";
+    public final static String TEST_URL =  "http://120.77.181.129:8080/web-wechart/mj/api/android/";
     public final static String BASE_URL =  "http://qa-merchant.fork.red/web-wechart/mj/api/android/";
+    public final static String IMAGE_BASE_URL =  "http://qa-user.fork.red";   //加载图片主路径
 
 }

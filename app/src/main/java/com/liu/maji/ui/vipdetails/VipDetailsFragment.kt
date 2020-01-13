@@ -47,6 +47,7 @@ class VipDetailsFragment : MySupportFragment<VipDetailsView, VipDetailsPresenter
     private var amount: Int = 0
     private var cardNum: String = ""
     private var mobile : String = ""
+    private var imei : String = ""
     private var bottomSheetDialog: BottomSheetDialog? = null
     private var chargeMechineData: MutableList<ChargeMechineResponse.DataBean>? = null
     private var chargeMechineAdapter: ChargeMechineAdapter? = null
@@ -86,8 +87,12 @@ class VipDetailsFragment : MySupportFragment<VipDetailsView, VipDetailsPresenter
         this.amount = arguments?.getInt("amount") ?: 0//余额
         this.cardNum = arguments?.getString("cardNum") ?: "" //卡编号
         this.mobile = arguments?.getString("mobile") ?: ""
+        this.imei = arguments?.getString("imei") ?: ""
         tv_balance.text = "当前点数: " + amount?.toString()
         tv_vip_number.text = "会员卡: $cardNum"
+        if (imei.isNotEmpty()){
+            et_charge_num.setText(imei)
+        }
         showProgress(1)
         getPresenter().queryChargeMechineInfo(Prefs.getInt(Constant.MERCHANT_ID, 0), Prefs.getInt(Constant.AGENT_ID, 0)
                 , 1, 10, 1, 10)
@@ -121,58 +126,69 @@ class VipDetailsFragment : MySupportFragment<VipDetailsView, VipDetailsPresenter
             return
         }
 
-        if (businessType == "充值"){
-            val chargeMoney = et_charge_money.text.toString().trim()
+        when (businessType) {
+            "充值" -> {
+                val chargeMoney = et_charge_money.text.toString().trim()
 
-            if (TextUtils.isEmpty(chargeMoney)) {
-                toast(getString(R.string.charge_money_is_empty))
-                return
-            }
-            var chargeMoneyInt = 0
-            try {
-                chargeMoneyInt = chargeMoney.toInt()
-            } catch (e: NumberFormatException) {
-                ToastUtils.showToast("请输入正确的充值点数")
-                return
-            }
-            if (chargeMoneyInt <= 0) {
-                ToastUtils.showToast("充值点数必须大于0")
-            }
-            if (TextUtils.isEmpty(devcieNumCharge)) {
-                toast(getString(R.string.charge_is_empty))
-                return
-            }
-            showProgress(1)
-            getPresenter().charge(devcieNumCharge, Prefs.getInt(Constant.AGENT_ID, 0),
-                    cardNum, chargeMoneyInt, 0, (chargeMoneyInt + amount).toDouble())
-        }else if (businessType == "挂失"){
-            //
-            if (TextUtils.isEmpty(mobile)){
-                toast("该卡未绑定手机号,不能挂失")
-                return
-            }
-            getPresenter().lossCard(Prefs.getInt(Constant.MERCHANT_ID,0),Prefs.getInt(Constant.AGENT_ID,0),
-                    cardNum,mobile,"")
-        }else if (businessType == "补卡"){
-            //获取新的卡号
-            if (TextUtils.isEmpty(mobile)){
-                toast("该卡未绑定手机号,不能补卡")
-                return
-            }
-            if (TextUtils.isEmpty(devcieNumCharge)) {
-                toast(getString(R.string.charge_is_empty))
-                return
-            }
-            val newCd = et_newCd.text.toString().trim()
-            if (TextUtils.isEmpty(newCd)) {
-                toast(getString(R.string.charge_is_empty))
-                return
-            }
+                if (TextUtils.isEmpty(chargeMoney)) {
+                    toast(getString(R.string.charge_money_is_empty))
+                    return
+                }
+                var chargeMoneyInt = 0
+                try {
+                    chargeMoneyInt = chargeMoney.toInt()
+                } catch (e: NumberFormatException) {
+                    ToastUtils.showToast("请输入正确的充值点数")
+                    return
+                }
+                if (chargeMoneyInt <= 0) {
+                    ToastUtils.showToast("充值点数必须大于0")
+                    return
+                }
 
-            getPresenter().replaceCard(Prefs.getInt(Constant.MERCHANT_ID,0),Prefs.getInt(Constant.AGENT_ID,0),
-                    cardNum,devcieNumCharge,mobile,newCd)
-        }else if (businessType == "退卡"){
-            getPresenter().refundCard(Prefs.getInt(Constant.MERCHANT_ID,0),Prefs.getInt(Constant.AGENT_ID,0),
+                if (chargeMoneyInt > 9999){
+                    ToastUtils.showToast("充值点数必须小于9999")
+                    return
+                }
+                val imei = et_charge_num.text.toString().trim()
+
+                if (TextUtils.isEmpty(devcieNumCharge) && TextUtils.isEmpty(imei)) {
+                    toast(getString(R.string.charge_is_empty))
+                    return
+                }
+                showProgress(1)
+                getPresenter().charge(if (TextUtils.isEmpty(devcieNumCharge)) imei else devcieNumCharge, Prefs.getInt(Constant.AGENT_ID, 0),
+                        cardNum, chargeMoneyInt, 0, (chargeMoneyInt + amount).toDouble())
+            }
+            "挂失" -> {
+                //
+                if (TextUtils.isEmpty(mobile)){
+                    toast("该卡未绑定手机号,不能挂失")
+                    return
+                }
+                getPresenter().lossCard(Prefs.getInt(Constant.MERCHANT_ID,0),Prefs.getInt(Constant.AGENT_ID,0),
+                        cardNum,mobile,"")
+            }
+            "补卡" -> {
+                //获取新的卡号
+                if (TextUtils.isEmpty(mobile)){
+                    toast("该卡未绑定手机号,不能补卡")
+                    return
+                }
+                if (TextUtils.isEmpty(devcieNumCharge)) {
+                    toast(getString(R.string.charge_is_empty))
+                    return
+                }
+                val newCd = et_newCd.text.toString().trim()
+                if (TextUtils.isEmpty(newCd)) {
+                    toast(getString(R.string.charge_is_empty))
+                    return
+                }
+
+                getPresenter().replaceCard(Prefs.getInt(Constant.MERCHANT_ID,0),Prefs.getInt(Constant.AGENT_ID,0),
+                        cardNum,devcieNumCharge,mobile,newCd)
+            }
+            "退卡" -> getPresenter().refundCard(Prefs.getInt(Constant.MERCHANT_ID,0),Prefs.getInt(Constant.AGENT_ID,0),
                     cardNum,mobile)
         }
 
@@ -263,6 +279,13 @@ class VipDetailsFragment : MySupportFragment<VipDetailsView, VipDetailsPresenter
             }
             et_newCd.setText(data?.getString(CodeUtils.RESULT_STRING))
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        println("充值界面销毁")
+        devcieNumCharge = ""
+        getPresenter().detachView(false)
     }
 
 }

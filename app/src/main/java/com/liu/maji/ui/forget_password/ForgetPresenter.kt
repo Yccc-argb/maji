@@ -10,21 +10,30 @@ import com.liu.maji.utils.ToastUtils
 
 class ForgetPresenter : BasePresenter<ForgetView>() {
 
-    fun commitNewPasswordToService(phone: String) {
 
+    /**
+     * 修改密码
+     * @param phone 手机号
+     * @param oldPassword 原密码
+     * @param newPassword 新密码
+     */
+    fun commitNewPasswordToService(phone: String, oldPassword: String, newPassword: String) {
+        ApiClient.getInstance().changePassword(
+                phone,
+                oldPassword,
+                newPassword,
+                object : ResponseSubscriber<CommonResponse>() {
+                    override fun onRealSuccess(t: CommonResponse?) {
+                        hideProgress()
+                        if (t?.isSuccess == true) {
+                            view?.onCommitNewPasswordResult(t?.isSuccess)
+                        } else {
+                            ToastUtils.showToast(t?.message)
+                        }
 
-//        ApiClient.getInstance().getCode(phone, object : ResponseSubscriber<CommonResponse>() {
-//            override fun onRealSuccess(t: CommonResponse) {
-//                hideProgress()
-//                if (t.isSuccess) {
-//                    view?.onCommitNewPasswordResult(true)
-//                } else {
-//                    ToastUtils.showToast(t.message)
-//                }
-//            }
-//        })
-
-
+                    }
+                }
+        )
     }
 
 }
